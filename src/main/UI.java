@@ -19,23 +19,20 @@ public class UI {
 		System.out.println("\tW) Update Weight");
 		System.out.println("\tE) Exit");
 		System.out.println("> ");
-		try (Scanner scanner = new Scanner(System.in)) {
-			String input = scanner.next();
-			Cmd cmd;
-			try {
-				cmd = Cmd.valueOf(input);
-			} catch (Exception e) {
-				throw new NoSuchCommandExceptions();
-			}
-			return cmd;
+		
+		String input = Input.getScanner().next();
+		Cmd cmd;
+		try {
+			cmd = Cmd.valueOf(input);
+		} catch (Exception e) {
+			throw new NoSuchCommandExceptions();
 		}
+		return cmd;
 	}
 
 	public String promptID() {
 		System.out.println("Enter ID or insert 'Q' to exit: ");
-		try (Scanner scanner = new Scanner(System.in)) {
-			return scanner.next();
-		}
+		return Input.getScanner().next();
 	}
 
 	public void showFinishMsg() {

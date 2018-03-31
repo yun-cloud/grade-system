@@ -59,7 +59,7 @@ public class GradeSystem {
 	}
 	
 	public void showRank(Grade student) {
-		
+		System.out.println(student.name + "'s rank: " + student.rank);
 	}
 	
 	public void updateWeights(double[] newWeights) {
@@ -90,41 +90,41 @@ public class GradeSystem {
 		System.out.println("mid-term:\t" + weights[3] * 100 + "%");
 		System.out.println("final exam:\t" + weights[4] * 100 + "%");
 		
-		try (Scanner scanner = new Scanner(System.in)) {
-			System.out.println("New Weights:");
-			System.out.println("lab1:\t");
-			int lab1 =  scanner.nextInt();
-			System.out.println("lab2:\t");
-			int lab2 =  scanner.nextInt();
-			System.out.println("lab3:\t");
-			int lab3 =  scanner.nextInt();
-			System.out.println("mid-term:\t");
-			int midterm =  scanner.nextInt();
-			System.out.println("final exam:\t");
-			int finalexam =  scanner.nextInt();
+
+		System.out.println("New Weights:");
+		System.out.print("lab1:\t");
+		int lab1 =  Input.getScanner().nextInt();
+		System.out.print("lab2:\t");
+		int lab2 =  Input.getScanner().nextInt();
+		System.out.print("lab3:\t");
+		int lab3 =  Input.getScanner().nextInt();
+		System.out.print("mid-term:\t");
+		int midterm =  Input.getScanner().nextInt();
+		System.out.print("final exam:\t");
+		int finalexam =  Input.getScanner().nextInt();
+		
+		System.out.println("Check new Weights:");
+		System.out.println("lab1:\t" + lab1 + "%");
+		System.out.println("lab2:\t" + lab2 + "%");
+		System.out.println("lab3:\t" + lab3 + "%");
+		System.out.println("mid-term:\t" + midterm + "%");
+		System.out.println("final exam:\t" + finalexam + "%");
+		
+		System.out.println("Is it correct?(y/n)");
+		String answer = Input.getScanner().next();
+		
+		if (answer.equalsIgnoreCase("Y")) {
+			double[] newWeights = new double[] {
+					((double) lab1) / 100,
+					((double) lab2) / 100,
+					((double) lab3) / 100,
+					((double) midterm) / 100,
+					((double) finalexam) / 100,
+			};
 			
-			System.out.println("Check new Weights:");
-			System.out.println("lab1:\t" + lab1 * 100 + "%");
-			System.out.println("lab2:\t" + lab2 * 100 + "%");
-			System.out.println("lab3:\t" + lab3 * 100 + "%");
-			System.out.println("mid-term:\t" + midterm * 100 + "%");
-			System.out.println("final exam:\t" + finalexam * 100 + "%");
-			
-			System.out.println("Is it correct?(y/n)");
-			String answer = scanner.next();
-			
-			if (answer.equalsIgnoreCase("Y")) {
-				double[] newWeights = new double[] {
-						((double) lab1) / 100,
-						((double) lab2) / 100,
-						((double) lab3) / 100,
-						((double) midterm) / 100,
-						((double) finalexam) / 100,
-				};
-				
-				updateWeights(newWeights);
-			}
+			updateWeights(newWeights);
 		}
+
 
 
 	}

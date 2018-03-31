@@ -47,7 +47,7 @@ public class Main {
 				} else if (cmd == Cmd.A) {
 					gs.showAverage(student);
 				} else if (cmd == Cmd.W) {
-					
+					gs.promptUpdateWeights();
 				} else if (cmd == Cmd.E) {
 					System.out.println("Exit");
 					break;
