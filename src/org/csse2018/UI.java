@@ -46,11 +46,11 @@ public class UI {
 
 	public Cmd promptCommand() throws NoSuchCommandExceptions {
 		System.out.println("Insert command:");
-		System.out.println("\nG) Show Grade");
-		System.out.println("\nR) Show Rank");
-		System.out.println("\nA) Show Average");
-		System.out.println("\nW) Update Weight");
-		System.out.println("\nE) Exit");
+		System.out.println("\tG) Show Grade");
+		System.out.println("\tR) Show Rank");
+		System.out.println("\tA) Show Average");
+		System.out.println("\tW) Update Weight");
+		System.out.println("\tE) Exit");
 		System.out.println("> ");
 		try (Scanner scanner = new Scanner(System.in)) {
 			String input = scanner.next();

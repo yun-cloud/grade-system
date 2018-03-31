@@ -7,7 +7,6 @@ public class GradeSystem {
 	private LinkedList grades;
 
 	public GradeSystem() {
-		fr = new FileReader("grades.txt")
 	}
 	public boolean containsID(int ID) {
 		return true;
