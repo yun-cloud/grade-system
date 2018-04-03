@@ -3,7 +3,9 @@ package main;
 public class Grade {
 	public String name;
 	public String ID;
-	public int[] grades = new int[5];
+	public static final int NUM_GRADE = 5;
+	public static final String[] grade_names = new String[] { "lab1", "lab2", "lab3", "mid-term", "final exam" };
+	public int[] grades = new int[NUM_GRADE];
 	public int totalGrade;
 	public int rank;
 
@@ -21,7 +23,7 @@ public class Grade {
 			}
 		}
 	}
-	
+
 	public void print() {
 		System.out.print(ID + " " + name);
 		for (int grade : grades) {
@@ -31,7 +33,7 @@ public class Grade {
 		System.out.print(" " + rank);
 		System.out.println("");
 	}
-	
+
 	public String getGrade(int index) {
 		int grade = grades[index];
 		if (grade < 60) {
@@ -40,10 +42,10 @@ public class Grade {
 			return String.valueOf(grade);
 		}
 	}
-	
+
 	public void updateTotalGrade(double[] weights) {
 		double result = 0;
-		for (int i=0; i<5; i++) {
+		for (int i = 0; i < 5; i++) {
 			result += weights[i] * grades[i];
 		}
 		totalGrade = (int) Math.round(result);

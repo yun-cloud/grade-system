@@ -8,13 +8,11 @@ import main.UI.NoSuchCommandExceptions;
 public class Main {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		UI ui = new UI();
 		GradeSystem gs = null;
 		try {
 			gs = new GradeSystem();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -30,7 +28,7 @@ public class Main {
 				continue;
 			}
 			ui.showWelcomeMsg(student);
-			
+
 			while (true) {
 				Cmd cmd = null;
 				try {
@@ -39,7 +37,7 @@ public class Main {
 					System.out.println("Invalid Command");
 					continue;
 				}
-				
+
 				if (cmd == Cmd.G) {
 					gs.showGrade(student);
 				} else if (cmd == Cmd.R) {

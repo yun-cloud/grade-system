@@ -3,23 +3,26 @@ package main;
 import java.util.Scanner;
 
 public class UI {
-	
-	public enum Cmd { G, R, A, W, E }
-	
-	public static class NoSuchIDExceptions extends Exception {}
-	public static class NoSuchCommandExceptions extends Exception {}
-	
-	public UI() {}
+	private static final String PROMPT_COMMAND_MESSAGE = "Insert command:\n" + "\tG) Show Grade\n" + "\tR) Show Rank\n"
+			+ "\tA) Show Average\n" + "\tW) Update Weight\n" + "\tE) Exit\n" + "> ";
+	private static final String PROMPT_ID_MESSAGE = "Enter ID or insert 'Q' to exit: ";
+
+	public enum Cmd {
+		G, R, A, W, E
+	}
+
+	public static class NoSuchIDExceptions extends Exception {
+	}
+
+	public static class NoSuchCommandExceptions extends Exception {
+	}
+
+	public UI() {
+	}
 
 	public Cmd promptCommand() throws NoSuchCommandExceptions {
-		System.out.println("Insert command:");
-		System.out.println("\tG) Show Grade");
-		System.out.println("\tR) Show Rank");
-		System.out.println("\tA) Show Average");
-		System.out.println("\tW) Update Weight");
-		System.out.println("\tE) Exit");
-		System.out.println("> ");
-		
+		System.out.print(PROMPT_COMMAND_MESSAGE);
+
 		String input = Input.getScanner().next();
 		Cmd cmd;
 		try {
@@ -31,7 +34,7 @@ public class UI {
 	}
 
 	public String promptID() {
-		System.out.println("Enter ID or insert 'Q' to exit: ");
+		System.out.print(PROMPT_ID_MESSAGE);
 		return Input.getScanner().next();
 	}
 
@@ -42,6 +45,5 @@ public class UI {
 	public void showWelcomeMsg(Grade student) {
 		System.out.println("Welcome " + student.name);
 	}
-	
-	
+
 }
