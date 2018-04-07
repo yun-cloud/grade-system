@@ -1,5 +1,12 @@
 package main;
 
+/*
+ * UI()
+ * promptCommand()
+ * promptID()
+ * showFinishMsg()
+ * showWelcomeMsg(Grade)
+ */
 public class UI {
 	private static final String PROMPT_COMMAND_MESSAGE = "Insert command:\n" + "\tG) Show Grade\n" + "\tR) Show Rank\n"
 			+ "\tA) Show Average\n" + "\tW) Update Weight\n" + "\tE) Exit\n" + "> ";

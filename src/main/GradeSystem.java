@@ -7,6 +7,18 @@ import java.util.Comparator;
 
 import main.Grade;
 
+/*
+ * class GradeSystem
+ *
+ * GradeSystem()
+ * find(ID)
+ * showGrade(Grade)
+ * showAverage(Grade)
+ * showRank(Grade)
+ * updateWeights(newWeights)
+ * promptUpdateWeights()
+ * updateRank()
+ */
 public class GradeSystem {
 	private ArrayList<Grade> students;
 	private static final double[] INITIAL_WEIGHTS = new double[] { 0.1, 0.1, 0.1, 0.3, 0.4 };
@@ -15,14 +27,11 @@ public class GradeSystem {
 	/* GradeSystem constructor  ----------------------------------------------------------------------------------
 	* 從 src/gradeinput.txt 讀取學生之成績資料
 	*
-	* @param void
-	*
 	* @throws IOException –
 	* 	src/gradeinput.txt 檔案不存在或毀損
 	* Pseudo code:
 	* 1. 開啟檔案，每一行創建一個 Grade object 存入 students 列表中
 	* 2. 以 updateWeights() method 設定 INITIAL_WEIGHTS，會順便設定 total grade 及 排名
-	* 3. 回傳 true
 	*
 	* Time estimate : O (n × log(n))
 	* Example: new GradeSystem() ;
@@ -203,7 +212,7 @@ public class GradeSystem {
 	* @return void (更新內部資料）
 	*
 	* Pseudo code:
-	* 1. 依序賦序排名值（index + 1)
+	* 1. 依序賦序學生排名值（index + 1)
 	* 2. 若該學生分數與 previousTotalGrade 一樣，則排名亦為 previousRank
 	*
 	* Time estimate : O (n)

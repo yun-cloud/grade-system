@@ -1,5 +1,10 @@
 package main;
 
+/*
+ * Grade(line)
+ * getGrade(index)
+ * updateTotalGrade(weights)
+ */
 public class Grade {
 	public String name;
 	public String ID;
@@ -67,7 +72,7 @@ public class Grade {
 	*
 	* Pseudo code:
 	* 1. 算出該加權權重下之 total grade
-	* 2. 小數後，四捨五入。
+	* 2. 小數點後，四捨五入。
 	*
 	* Time estimate : O (1)
 	* Example: Grade物件.updateTotalGrade([0.1, 0.1, 0.1, 0.3, 0.4]) ;
