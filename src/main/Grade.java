@@ -9,6 +9,18 @@ public class Grade {
 	public int totalGrade;
 	public int rank;
 
+	/* Grade constructor  ----------------------------------------------------
+	* parse gradeLine 參數，設定為內部欄位
+	*
+	* @param gradeLine 格式為"ID name lab1 lab2 lab3 mid-term finalExam"之字串
+	*
+	* Pseudo code:
+	* 1. 以空格區分出不同資料
+	* 2. 依序設定到內部欄位
+	*
+	* Time estimate : O (1)
+	* Example: new GradeSystem() ;
+	-------------------------------------------------------------------------*/
 	public Grade(String gradeLine) {
 		String[] parts = gradeLine.split(" ");
 		int k = 0;
@@ -24,16 +36,20 @@ public class Grade {
 		}
 	}
 
-	public void print() {
-		System.out.print(ID + " " + name);
-		for (int grade : grades) {
-			System.out.print(" " + grade);
-		}
-		System.out.print(" " + totalGrade);
-		System.out.print(" " + rank);
-		System.out.println("");
-	}
-
+	/* method  getGrade  ----------------------------------------------------------------------------------
+	* 回傳 index 對應成績之字串形式。
+	* 若低於60分，後面加註一個 *
+	*
+	* @param index 指定是哪個成績
+	* @return 其字串形式
+	*
+	* Pseudo code:
+	* 1. 檢查是否低於60分
+	* 2. 是，則加註 *；反之，則轉為 String 後直接回傳。
+	*
+	* Time estimate : O (1)
+	* Example: Grade物件.getGrade(4) ; 回傳收成績之字串形式
+	----------------------------------------------------------------------------------------------------------*/
 	public String getGrade(int index) {
 		int grade = grades[index];
 		if (grade < 60) {
@@ -43,6 +59,19 @@ public class Grade {
 		}
 	}
 
+	/* method  updateTotalGrade  ----------------------------------------------------------------------------------
+	* 以加權權重 weights，更新 totalGrade
+	*
+	* @param weights 加權權重
+	* @return void
+	*
+	* Pseudo code:
+	* 1. 算出該加權權重下之 total grade
+	* 2. 小數後，四捨五入。
+	*
+	* Time estimate : O (1)
+	* Example: Grade物件.updateTotalGrade([0.1, 0.1, 0.1, 0.3, 0.4]) ;
+	----------------------------------------------------------------------------------------------------------*/
 	public void updateTotalGrade(double[] weights) {
 		double result = 0;
 		for (int i = 0; i < 5; i++) {
