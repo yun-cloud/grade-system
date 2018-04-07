@@ -8,22 +8,13 @@ package main;
  * showWelcomeMsg(Grade)
  */
 public class UI {
-	private static final String PROMPT_COMMAND_MESSAGE = "Insert command:\n" + "\tG) Show Grade\n" + "\tR) Show Rank\n"
-			+ "\tA) Show Average\n" + "\tW) Update Weight\n" + "\tE) Exit\n" + "> ";
-	private static final String PROMPT_ID_MESSAGE = "Enter ID or insert 'Q' to exit: ";
-
-	public enum Cmd {
-		G, R, A, W, E
-	}
-
-	public static class NoSuchIDExceptions extends Exception {
-	}
-
-	public static class NoSuchCommandExceptions extends Exception {
-	}
-
-	public UI() {
-	}
+	
+	public enum Cmd { G, R, A, W, E }
+	
+	public static class NoSuchIDExceptions extends Exception {}
+	public static class NoSuchCommandExceptions extends Exception {}
+	
+	public UI() {}
 
 	/* method promptCommand  ----------------------------------------------------------------------------------
 	* 引導使用者輸入欲執行之command。
@@ -40,8 +31,14 @@ public class UI {
 	* Example: UI物件.promptCommand() ; 回傳使用者指定 Cmd 物件
 	----------------------------------------------------------------------------------------------------------*/
 	public Cmd promptCommand() throws NoSuchCommandExceptions {
-		System.out.print(PROMPT_COMMAND_MESSAGE);
-
+		System.out.println("Insert command:");
+		System.out.println("\tG) Show Grade");
+		System.out.println("\tR) Show Rank");
+		System.out.println("\tA) Show Average");
+		System.out.println("\tW) Update Weight");
+		System.out.println("\tE) Exit");
+		System.out.println("> ");
+		
 		String input = Input.getScanner().next();
 		Cmd cmd;
 		try {
@@ -65,7 +62,7 @@ public class UI {
 	* Example: UI物件.promptID() ; 回傳使用者輸入之ID
 	----------------------------------------------------------------------------------------------------------*/
 	public String promptID() {
-		System.out.print(PROMPT_ID_MESSAGE);
+		System.out.println("Enter ID or insert 'Q' to exit: ");
 		return Input.getScanner().next();
 	}
 
@@ -96,5 +93,4 @@ public class UI {
 	public void showWelcomeMsg(Grade student) {
 		System.out.println("Welcome " + student.name);
 	}
-
 }

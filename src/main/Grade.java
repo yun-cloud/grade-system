@@ -41,6 +41,17 @@ public class Grade {
 		}
 	}
 
+	public void print() { // no test case
+		System.out.print(ID + " " + name);
+		for (int grade : grades) {
+			System.out.print(" " + grade);
+		}
+		System.out.print(" " + totalGrade);
+		System.out.print(" " + rank);
+		System.out.println("");
+	}
+
+
 	/* method  getGrade  ----------------------------------------------------------------------------------
 	* 回傳 index 對應成績之字串形式。
 	* 若低於60分，後面加註一個 *

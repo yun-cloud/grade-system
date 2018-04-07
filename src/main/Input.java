@@ -8,8 +8,7 @@ public class Input {
 	/* Input constructor  -------------------------
 	* 以空的函式主體覆蓋預設行為，避免創建多餘物件。
 	---------------------------------------------*/
-	private Input() {
-	}
+	private Input() {}
 
 	/* method  getScanner  ----------------------------------------------------
 	* 直接回傳 scanner

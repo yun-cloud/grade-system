@@ -43,7 +43,7 @@ public class Main {
 				} else if (cmd == Cmd.R) {
 					gs.showRank(student);
 				} else if (cmd == Cmd.A) {
-					gs.showAverage(student);
+					gs.showAverage();
 				} else if (cmd == Cmd.W) {
 					gs.promptUpdateWeights();
 				} else if (cmd == Cmd.E) {

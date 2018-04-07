@@ -39,12 +39,16 @@ public class GradeSystem {
 	public GradeSystem() throws IOException {
 		students = new ArrayList<Grade>();
 		try (FileInputStream in = new FileInputStream("src/gradeinput.txt");
-				BufferedReader br = new BufferedReader(new InputStreamReader(in, "UTF-8"));) {
-			br.read(); // fixed a weird bug
+				BufferedReader br = new BufferedReader(new InputStreamReader(in, "UTF-8"));
+				) {
+			char[] noUse = new char[3];
+			br.read(noUse, 0, 1);
+
 			String line;
 			while ((line = br.readLine()) != null) {
-				students.add(new Grade(line.trim()));
+				students.add(new Grade(line));
 			}
+
 			updateWeights(INITIAL_WEIGHTS);
 		}
 	}
@@ -87,9 +91,11 @@ public class GradeSystem {
 	----------------------------------------------------------------------------------------------------------*/
 	public void showGrade(Grade student) {
 		System.out.println(student.name + "'s grade:");
-		for (int i = 0; i < Grade.NUM_GRADE; i++) {
-			System.out.println(String.format("%s:\t%s", Grade.grade_names[i], student.getGrade(i)));
-		}
+		System.out.println("lab1:\t" + student.getGrade(0));
+		System.out.println("lab2:\t" + student.getGrade(1));
+		System.out.println("lab3:\t" + student.getGrade(2));
+		System.out.println("mid-term:\t" + student.getGrade(3));
+		System.out.println("final exam:\t" + student.getGrade(4));
 		System.out.println("total grade:\t" + student.totalGrade);
 	}
 
@@ -105,8 +111,13 @@ public class GradeSystem {
 	* Time estimate : O (n)
 	* Example: GradeSystem物件.showAverage(some_student) ;
 	----------------------------------------------------------------------------------------------------------*/
-	public void showAverage(Grade student) {
-		System.out.println(student.name + "'s total grade:" + student.totalGrade);
+	public void showAverage() {
+		double averageGrade = 0.0f;
+		for(Grade student: students) {
+			averageGrade += (double )student.totalGrade;
+		}
+		averageGrade /= 63;
+		System.out.println("Average grade:" + Math.round(averageGrade));
 	}
 
 	/* method  showRank  ----------------------------------------------------------------------------------
@@ -176,29 +187,43 @@ public class GradeSystem {
 	----------------------------------------------------------------------------------------------------------*/
 	public void promptUpdateWeights() {
 		System.out.println("Old Weights:");
-		for (int i = 0; i < Grade.NUM_GRADE; i++) {
-			System.out.println(String.format("\t%s:\t%s%%", Grade.grade_names[i], weights[i] * 100));
-		}
+		System.out.println("lab1:\t" + weights[0] * 100 + "%");
+		System.out.println("lab2:\t" + weights[1] * 100 + "%");
+		System.out.println("lab3:\t" + weights[2] * 100 + "%");
+		System.out.println("mid-term:\t" + weights[3] * 100 + "%");
+		System.out.println("final exam:\t" + weights[4] * 100 + "%");
 
-		double[] newWeights = new double[5];
+
 		System.out.println("New Weights:");
-		for (int i = 0; i < Grade.NUM_GRADE; i++) {
-			System.out.print(String.format("\t%s:\t", Grade.grade_names[i]));
-			newWeights[i] = Input.getScanner().nextDouble();
-		}
+		System.out.print("lab1:\t");
+		int lab1 =  Input.getScanner().nextInt();
+		System.out.print("lab2:\t");
+		int lab2 =  Input.getScanner().nextInt();
+		System.out.print("lab3:\t");
+		int lab3 =  Input.getScanner().nextInt();
+		System.out.print("mid-term:\t");
+		int midterm =  Input.getScanner().nextInt();
+		System.out.print("final exam:\t");
+		int finalexam =  Input.getScanner().nextInt();
 
 		System.out.println("Check new Weights:");
-		for (int i = 0; i < Grade.NUM_GRADE; i++) {
-			System.out.println(String.format("\t%s:\t%s%%", Grade.grade_names[i], newWeights[i]));
-		}
+		System.out.println("lab1:\t" + lab1 + "%");
+		System.out.println("lab2:\t" + lab2 + "%");
+		System.out.println("lab3:\t" + lab3 + "%");
+		System.out.println("mid-term:\t" + midterm + "%");
+		System.out.println("final exam:\t" + finalexam + "%");
 
 		System.out.println("Is it correct?(y/n)");
 		String answer = Input.getScanner().next();
 
 		if (answer.equalsIgnoreCase("Y")) {
-			for (int i = 0; i < Grade.NUM_GRADE; i++) {
-				newWeights[i] = newWeights[i] / 100;
-			}
+			double[] newWeights = new double[] {
+					((double) lab1) / 100,
+					((double) lab2) / 100,
+					((double) lab3) / 100,
+					((double) midterm) / 100,
+					((double) finalexam) / 100,
+			};
 
 			updateWeights(newWeights);
 		}
@@ -218,7 +243,7 @@ public class GradeSystem {
 	* Time estimate : O (n)
 	* Example: GradeSystem物件.updateRank() ;
 	----------------------------------------------------------------------------------------------------------*/
-	public void updateRank() {
+	private void updateRank() {
 		// must after update weights
 		int index = 0;
 		int previousTotalGrade = -1;
