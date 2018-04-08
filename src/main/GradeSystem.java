@@ -91,11 +91,9 @@ public class GradeSystem {
 	----------------------------------------------------------------------------------------------------------*/
 	public void showGrade(Grade student) {
 		System.out.println(student.name + "'s grade:");
-		System.out.println("lab1:\t" + student.getGrade(0));
-		System.out.println("lab2:\t" + student.getGrade(1));
-		System.out.println("lab3:\t" + student.getGrade(2));
-		System.out.println("mid-term:\t" + student.getGrade(3));
-		System.out.println("final exam:\t" + student.getGrade(4));
+		for (int i = 0; i < Grade.NUM_GRADE; i++) {
+			System.out.println(String.format("%s:\t%s", Grade.grade_names[i], student.getGrade(i)));
+		}
 		System.out.println("total grade:\t" + student.totalGrade);
 	}
 
@@ -187,43 +185,29 @@ public class GradeSystem {
 	----------------------------------------------------------------------------------------------------------*/
 	public void promptUpdateWeights() {
 		System.out.println("Old Weights:");
-		System.out.println("lab1:\t" + weights[0] * 100 + "%");
-		System.out.println("lab2:\t" + weights[1] * 100 + "%");
-		System.out.println("lab3:\t" + weights[2] * 100 + "%");
-		System.out.println("mid-term:\t" + weights[3] * 100 + "%");
-		System.out.println("final exam:\t" + weights[4] * 100 + "%");
+		for (int i = 0; i < Grade.NUM_GRADE; i++) {
+			System.out.println(String.format("%s:\t%s%%", Grade.grade_names[i], weights[i] * 100));
+		}
 
-
+		double[] newWeights = new double[5];
 		System.out.println("New Weights:");
-		System.out.print("lab1:\t");
-		int lab1 =  Input.getScanner().nextInt();
-		System.out.print("lab2:\t");
-		int lab2 =  Input.getScanner().nextInt();
-		System.out.print("lab3:\t");
-		int lab3 =  Input.getScanner().nextInt();
-		System.out.print("mid-term:\t");
-		int midterm =  Input.getScanner().nextInt();
-		System.out.print("final exam:\t");
-		int finalexam =  Input.getScanner().nextInt();
+		for (int i = 0; i < Grade.NUM_GRADE; i++) {
+			System.out.print(String.format("%s:\t", Grade.grade_names[i]));
+			newWeights[i] = Input.getScanner().nextDouble();
+		}
 
 		System.out.println("Check new Weights:");
-		System.out.println("lab1:\t" + lab1 + "%");
-		System.out.println("lab2:\t" + lab2 + "%");
-		System.out.println("lab3:\t" + lab3 + "%");
-		System.out.println("mid-term:\t" + midterm + "%");
-		System.out.println("final exam:\t" + finalexam + "%");
+		for (int i = 0; i < Grade.NUM_GRADE; i++) {
+			System.out.println(String.format("%s:\t%s%%", Grade.grade_names[i], (int) newWeights[i]));
+		}
 
 		System.out.println("Is it correct?(y/n)");
 		String answer = Input.getScanner().next();
 
 		if (answer.equalsIgnoreCase("Y")) {
-			double[] newWeights = new double[] {
-					((double) lab1) / 100,
-					((double) lab2) / 100,
-					((double) lab3) / 100,
-					((double) midterm) / 100,
-					((double) finalexam) / 100,
-			};
+			for (int i = 0; i < Grade.NUM_GRADE; i++) {
+				newWeights[i] = newWeights[i] / 100;
+			}
 
 			updateWeights(newWeights);
 		}

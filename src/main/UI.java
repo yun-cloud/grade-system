@@ -8,13 +8,28 @@ package main;
  * showWelcomeMsg(Grade)
  */
 public class UI {
-	
-	public enum Cmd { G, R, A, W, E }
-	
-	public static class NoSuchIDExceptions extends Exception {}
-	public static class NoSuchCommandExceptions extends Exception {}
-	
-	public UI() {}
+	private static final String PROMPT_COMMAND_MESSAGE =
+			"Insert command:\r\n" +
+			"\tG) Show Grade\r\n" +
+			"\tR) Show Rank\r\n" +
+			"\tA) Show Average\r\n" +
+			"\tW) Update Weight\r\n" +
+			"\tE) Exit\r\n" +
+			"> ";
+	private static final String PROMPT_ID_MESSAGE = "Enter ID or insert 'Q' to exit: ";
+
+	public enum Cmd {
+		G, R, A, W, E
+	}
+
+	public static class NoSuchIDExceptions extends Exception {
+	}
+
+	public static class NoSuchCommandExceptions extends Exception {
+	}
+
+	public UI() {
+	}
 
 	/* method promptCommand  ----------------------------------------------------------------------------------
 	* 引導使用者輸入欲執行之command。
@@ -31,14 +46,8 @@ public class UI {
 	* Example: UI物件.promptCommand() ; 回傳使用者指定 Cmd 物件
 	----------------------------------------------------------------------------------------------------------*/
 	public Cmd promptCommand() throws NoSuchCommandExceptions {
-		System.out.println("Insert command:");
-		System.out.println("\tG) Show Grade");
-		System.out.println("\tR) Show Rank");
-		System.out.println("\tA) Show Average");
-		System.out.println("\tW) Update Weight");
-		System.out.println("\tE) Exit");
-		System.out.println("> ");
-		
+		System.out.println(PROMPT_COMMAND_MESSAGE);
+
 		String input = Input.getScanner().next();
 		Cmd cmd;
 		try {
@@ -62,7 +71,7 @@ public class UI {
 	* Example: UI物件.promptID() ; 回傳使用者輸入之ID
 	----------------------------------------------------------------------------------------------------------*/
 	public String promptID() {
-		System.out.println("Enter ID or insert 'Q' to exit: ");
+		System.out.println(PROMPT_ID_MESSAGE);
 		return Input.getScanner().next();
 	}
 
